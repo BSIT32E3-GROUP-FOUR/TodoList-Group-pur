@@ -1,4 +1,5 @@
-﻿using Todolist.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using Todolist.Models;
 
 namespace Todo.Service;
 
@@ -17,6 +18,7 @@ public record TodoModel
 
 public record AddTodoModel
 {
+    [Required]
     public string Description { get; init; } = string.Empty;
     public DateTime? DueDate { get; init; }
     public Category Category { get; init; } = Category.Adventure;

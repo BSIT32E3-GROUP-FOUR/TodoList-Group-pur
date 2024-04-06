@@ -1,5 +1,5 @@
-﻿@using TodoList.Domain
-@model IEnumerable<TodoList.Domain.ToDo>
+﻿
+@model IEnumerable<Todo.Service.TodoModel>
 
 <div class="row">
     <div class="col-md-2">
@@ -7,7 +7,7 @@
             <div class="mb-3">
                 <label class="form-label">Category</label>
                 <select name="filter" class="form-select"
-                        asp-items="@(new SelectList(ViewBag.Categories,"CategoryId","Name",ViewBag.Filters.CategoryId))">
+                        asp-items="@(new SelectList(ViewBag.Categories,"Key","Value",ViewBag.Filters.CategoryId))">
                     <option value="all">ALL</option>
                 </select>
             </div>
@@ -21,7 +21,7 @@
             <div class="mb-3">
                 <label class="form-label">Status:</label>
                 <select name="filter" class="form-select"
-                        asp-items="@(new SelectList(ViewBag.Statuses,"StatusId", "Name", ViewBag.Filters.StatusId))">
+                        asp-items="@(new SelectList(ViewBag.Statuses,"Key", "Value", ViewBag.Filters.StatusId))">
                     <option value="all">All</option>
                 </select>
             </div>
@@ -47,19 +47,19 @@
                 </thead>
     </div>
                 <tbody>
-                    @foreach (ToDo task in Model)
+                    @foreach (var task in Model)
                     {
                         string overdue = task.Overdue ? "bg-warning" : "";
                         <tr>
                             <td>@task.Description</td>
-                            <td>@task.Category.Name</td>
+                            <td>@task.Category</td>
                             <td class="@overdue">@task.DueDate?.ToShortDateString()</td>
-                            <td class="@overdue">@task.Status.Name</td>
+                            <td class="@overdue">@task.Status</td>
                             <td>
-                                @if (task.StatusId == "open")
+                                @if (task.Status == Status.InProgress)
                             {
                                     <button type="submit" class="btn btn-primary btn-sm"
-                                            name="@nameof(ToDo.Id)" value="@task.Id">
+                                            name="@nameof(task.Id)" value="@task.Id">
                                         Mark Completed
                                     </button>
                                 }

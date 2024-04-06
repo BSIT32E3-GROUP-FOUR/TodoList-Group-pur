@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    background-color: rgb(76,101,136);
+    background-color: rgb(255, 243, 199);
 }
 .container {
 
@@ -30,3 +30,11 @@ body {
 .th{
     text-align: center;
 }
+
+h1 {
+    font-size: 4rem;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    color: rgb(247, 65, 143);
+}
+
